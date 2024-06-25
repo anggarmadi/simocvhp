@@ -235,34 +235,38 @@ function Customer() {
                                         <td className='border px-4 py-2'>
                                             {item.phone_number}
                                         </td>
-                                        <td className='border px-4 py-2 flex justify-center space-x-2'>
-                                            <Link
-                                                to={`/detailcustomer/${item.id}`}
-                                            >
+                                        <td className='border px-4 py-2 '>
+                                            <div className='flex justify-center space-x-2'>
+                                                <Link
+                                                    to={`/detailcustomer/${item.id}`}
+                                                >
+                                                    <img
+                                                        src='/img/plus.svg'
+                                                        alt='Info'
+                                                        className='cursor-pointer'
+                                                    />
+                                                </Link>
                                                 <img
-                                                    src='/img/plus.svg'
-                                                    alt='Info'
+                                                    src='/img/edit.svg'
+                                                    alt='Edit'
                                                     className='cursor-pointer'
+                                                    onClick={() =>
+                                                        handleEditButtonClick(
+                                                            item,
+                                                        )
+                                                    }
                                                 />
-                                            </Link>
-                                            <img
-                                                src='/img/edit.svg'
-                                                alt='Edit'
-                                                className='cursor-pointer'
-                                                onClick={() =>
-                                                    handleEditButtonClick(item)
-                                                }
-                                            />
-                                            <img
-                                                src='/img/hapus.svg'
-                                                alt='Delete'
-                                                className='cursor-pointer'
-                                                onClick={() =>
-                                                    handleDeleteButtonClick(
-                                                        item.id,
-                                                    )
-                                                }
-                                            />
+                                                <img
+                                                    src='/img/hapus.svg'
+                                                    alt='Delete'
+                                                    className='cursor-pointer'
+                                                    onClick={() =>
+                                                        handleDeleteButtonClick(
+                                                            item.id,
+                                                        )
+                                                    }
+                                                />
+                                            </div>
                                         </td>
                                     </tr>
                                 ))

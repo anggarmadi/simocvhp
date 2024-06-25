@@ -162,36 +162,38 @@ function Inspeksi() {
                                             {item.status}
                                         </td>
 
-                                        <td className='border px-4 py-2 flex justify-center space-x-2'>
-                                            <Link
-                                                to={`/lihatinspeksi/${item.id}`}
-                                            >
-                                                <img
-                                                    src='/img/info.svg'
-                                                    alt='Info'
-                                                    className='cursor-pointer'
-                                                />
-                                            </Link>
+                                        <td className='border px-4 py-2 '>
+                                            <div className='flex justify-center space-x-2'>
+                                                <Link
+                                                    to={`/lihatinspeksi/${item.id}`}
+                                                >
+                                                    <img
+                                                        src='/img/info.svg'
+                                                        alt='Info'
+                                                        className='cursor-pointer'
+                                                    />
+                                                </Link>
 
-                                            <Link
-                                                to={`/editinspeksi/${item.id}`}
-                                            >
+                                                <Link
+                                                    to={`/editinspeksi/${item.id}`}
+                                                >
+                                                    <img
+                                                        src='/img/edit.svg'
+                                                        alt='Edit'
+                                                        className='cursor-pointer'
+                                                    />
+                                                </Link>
                                                 <img
-                                                    src='/img/edit.svg'
-                                                    alt='Edit'
+                                                    src='/img/hapus.svg'
+                                                    alt='Delete'
                                                     className='cursor-pointer'
+                                                    onClick={() =>
+                                                        handleDeleteButtonClick(
+                                                            item.id,
+                                                        )
+                                                    }
                                                 />
-                                            </Link>
-                                            <img
-                                                src='/img/hapus.svg'
-                                                alt='Delete'
-                                                className='cursor-pointer'
-                                                onClick={() =>
-                                                    handleDeleteButtonClick(
-                                                        item.id,
-                                                    )
-                                                }
-                                            />
+                                            </div>
                                         </td>
                                     </tr>
                                 ))

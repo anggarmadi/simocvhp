@@ -164,7 +164,7 @@ function PengajuanSurat() {
                                 <th className='px-4 py-2 '>Judul Surat</th>
                                 <th className='px-4 py-2 '>Jenis Surat</th>
                                 <th className='px-4 py-2 '>Tanggal</th>
-                                <th className='px-4 py-2 '>Tindakan</th>
+                                <th>Tindakan</th>
                                 <th className='px-4 py-2 '>Status</th>
                             </tr>
                         </thead>
@@ -191,56 +191,62 @@ function PengajuanSurat() {
                                             })}
                                         </td>
 
-                                        <td className='border px-4 py-2 flex justify-center space-x-2'>
-                                            <img
-                                                src='/img/info.svg'
-                                                alt='lihat'
-                                                onClick={() =>
-                                                    handleOpenFile(
-                                                        item.file_url,
-                                                    )
-                                                }
-                                                className='cursor-pointer'
-                                            />
-                                            <Link
-                                                to={`/editpengajuansurat/${item.id}`}
-                                            >
+                                        <td className='border px-4 py-2 '>
+                                            <div className='flex justify-center space-x-2'>
                                                 <img
-                                                    src='/img/edit.svg'
-                                                    alt='Edit'
+                                                    src='/img/views.svg'
+                                                    alt='lihat'
+                                                    onClick={() =>
+                                                        handleOpenFile(
+                                                            item.file_url,
+                                                        )
+                                                    }
                                                     className='cursor-pointer'
                                                 />
-                                            </Link>
-                                            <img
-                                                src='/img/hapus.svg'
-                                                alt='Delete'
-                                                className='cursor-pointer'
-                                                onClick={() =>
-                                                    handleDeleteButtonClick(
-                                                        item.id,
-                                                    )
-                                                }
-                                            />
+                                                <Link
+                                                    to={`/editpengajuansurat/${item.id}`}
+                                                >
+                                                    <img
+                                                        src='/img/edit.svg'
+                                                        alt='Edit'
+                                                        className='cursor-pointer'
+                                                    />
+                                                </Link>
+                                                <img
+                                                    src='/img/hapus.svg'
+                                                    alt='Delete'
+                                                    className='cursor-pointer'
+                                                    onClick={() =>
+                                                        handleDeleteButtonClick(
+                                                            item.id,
+                                                        )
+                                                    }
+                                                />
+                                            </div>
                                         </td>
                                         <td className='border px-4 py-2 '>
-                                            {item.status === 'diverifikasi' ? (
-                                                <img
-                                                    src='/img/diterima.svg'
-                                                    alt='Diterima'
-                                                    className='opacity-50'
-                                                />
-                                            ) : item.status === 'ditolak' ? (
-                                                <img
-                                                    src='/img/ditolak.svg'
-                                                    alt='Ditolak'
-                                                    className='opacity-50'
-                                                />
-                                            ) : (
-                                                <img
-                                                    src='/img/verifikasi.svg'
-                                                    alt='Verifikasi'
-                                                />
-                                            )}
+                                            <div className='flex justify-center space-x-2'>
+                                                {item.status ===
+                                                'diverifikasi' ? (
+                                                    <img
+                                                        src='/img/diterima.svg'
+                                                        alt='Diterima'
+                                                        className='opacity-100'
+                                                    />
+                                                ) : item.status ===
+                                                  'ditolak' ? (
+                                                    <img
+                                                        src='/img/ditolak.svg'
+                                                        alt='Ditolak'
+                                                        className='opacity-100'
+                                                    />
+                                                ) : (
+                                                    <img
+                                                        src='/img/menunggu.svg'
+                                                        alt='Verifikasi'
+                                                    />
+                                                )}
+                                            </div>
                                         </td>
                                     </tr>
                                 ))
@@ -248,7 +254,7 @@ function PengajuanSurat() {
                                 <tr>
                                     <td
                                         className='border px-4 py-2 text-center'
-                                        colSpan='3'
+                                        colSpan='6'
                                     >
                                         Belum ada tipe surat
                                     </td>

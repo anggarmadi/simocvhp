@@ -249,17 +249,19 @@ function DetailCustomer() {
                                             {item.qty}
                                         </td>
 
-                                        <td className='border px-4 py-2 flex justify-center space-x-2'>
-                                            <img
-                                                src='/img/hapus.svg'
-                                                alt='Delete'
-                                                className='cursor-pointer'
-                                                onClick={() =>
-                                                    handleDeleteButtonClick(
-                                                        item.product_id,
-                                                    )
-                                                }
-                                            />
+                                        <td className='border px-4 py-2 '>
+                                            <div className='flex justify-center space-x-2'>
+                                                <img
+                                                    src='/img/hapus.svg'
+                                                    alt='Delete'
+                                                    className='cursor-pointer'
+                                                    onClick={() =>
+                                                        handleDeleteButtonClick(
+                                                            item.product_id,
+                                                        )
+                                                    }
+                                                />
+                                            </div>
                                         </td>
                                     </tr>
                                 ))
@@ -302,9 +304,7 @@ function DetailCustomer() {
                                         })
                                     }
                                 >
-                                    <option value=''>
-                                        -- Pilih Perusahaan --
-                                    </option>
+                                    <option value=''>-- Pilih Barang --</option>
                                     {product.map((type) => (
                                         <option key={type.id} value={type.id}>
                                             {type.product_name}

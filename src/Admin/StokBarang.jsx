@@ -80,11 +80,12 @@ function StokBarang() {
         try {
             setLoading(true);
             const token = secureLocalStorage.getItem('accessToken');
+            console.log(selectedBarang);
             const response = await api.put(
                 `/api/product/${selectedBarang.id}`,
                 {
                     productName: selectedBarang.product_name,
-                    productTypeId: selectedBarang.product_type,
+                    productTypeId: selectedBarang.product_type_id,
                     stock: selectedBarang.product_stock,
                     updatedAt: selectedBarang.updatedAt,
                 },
@@ -282,25 +283,29 @@ function StokBarang() {
                                                 year: 'numeric',
                                             })}
                                         </td>
-                                        <td className='border px-4 py-2 flex justify-center space-x-2'>
-                                            <img
-                                                src='/img/edit.svg'
-                                                alt='Edit'
-                                                className='cursor-pointer'
-                                                onClick={() =>
-                                                    handleEditButtonClick(item)
-                                                }
-                                            />
-                                            <img
-                                                src='/img/hapus.svg'
-                                                alt='Delete'
-                                                className='cursor-pointer'
-                                                onClick={() =>
-                                                    handleDeleteButtonClick(
-                                                        item.id,
-                                                    )
-                                                }
-                                            />
+                                        <td className='border px-4 py-2 '>
+                                            <div className='flex justify-center space-x-2'>
+                                                <img
+                                                    src='/img/edit.svg'
+                                                    alt='Edit'
+                                                    className='cursor-pointer'
+                                                    onClick={() =>
+                                                        handleEditButtonClick(
+                                                            item,
+                                                        )
+                                                    }
+                                                />
+                                                <img
+                                                    src='/img/hapus.svg'
+                                                    alt='Delete'
+                                                    className='cursor-pointer'
+                                                    onClick={() =>
+                                                        handleDeleteButtonClick(
+                                                            item.id,
+                                                        )
+                                                    }
+                                                />
+                                            </div>
                                         </td>
                                     </tr>
                                 ))

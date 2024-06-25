@@ -96,16 +96,18 @@ function ManajemenInspeksi() {
                                         <td className='border px-4 py-2'>
                                             {item.status}
                                         </td>
-                                        <td className='border px-4 py-2 flex justify-center space-x-2'>
-                                            <Link
-                                                to={`/forminspeksi/${item.id}`}
-                                            >
-                                                <img
-                                                    src='/img/edit.svg'
-                                                    alt='Edit'
-                                                    className='cursor-pointer'
-                                                />
-                                            </Link>
+                                        <td className='border px-4 py-2 '>
+                                            <div className='flex justify-center space-x-2'>
+                                                <Link
+                                                    to={`/forminspeksi/${item.id}`}
+                                                >
+                                                    <img
+                                                        src='/img/edit.svg'
+                                                        alt='Edit'
+                                                        className='cursor-pointer'
+                                                    />
+                                                </Link>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))
