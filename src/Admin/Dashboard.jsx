@@ -37,7 +37,9 @@ function Dashboard() {
     }
     return (
         <div className=' h-screen relative flex'>
-            <Sidebar />
+            <div className='Sidebar'>
+                <Sidebar />
+            </div>
 
             <div className='ml-8 flex h-2' style={{ marginTop: '50px' }}>
                 <Link to='/manajemenkaryawan'>
