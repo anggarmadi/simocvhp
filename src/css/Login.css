@@ -1,6 +1,6 @@
 /* Login.css */
 .login-background {
-    background-image: url('img/bg_login.png'); /* Pastikan path menuju image benar */
+    background-image: url('../bg_login.png'); /* Pastikan path menuju image benar */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
