@@ -150,7 +150,7 @@ function EditPengajuanSurat() {
                 <Sidebar />
             </div>
             <div className='suratan'>
-                <div className='kepalanya'>
+                <div className='header'>
                     <DynamicTitle text='Edit Pengajuan Surat' />
                 </div>
 

@@ -100,16 +100,18 @@ function LaporInspeksiKaryawan() {
                                             {item.address}
                                         </td>
 
-                                        <td className='border px-4 py-2 flex justify-center space-x-2'>
-                                            <Link
-                                                to={`/detailinspekkaryawan/${item.id}`}
-                                            >
-                                                <img
-                                                    src='/img/info.svg'
-                                                    alt='Info'
-                                                    className='cursor-pointer'
-                                                />
-                                            </Link>
+                                        <td className='border px-4 py-2 '>
+                                            <div className='flex justify-center space-x-2'>
+                                                <Link
+                                                    to={`/detailinspekkaryawan/${item.id}`}
+                                                >
+                                                    <img
+                                                        src='/img/info.svg'
+                                                        alt='Info'
+                                                        className='cursor-pointer'
+                                                    />
+                                                </Link>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))

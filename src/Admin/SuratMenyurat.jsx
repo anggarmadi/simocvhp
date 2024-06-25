@@ -202,31 +202,35 @@ function SuratMenyurat() {
                                                 className='cursor-pointer'
                                             />
                                         </td>
-                                        <td className='border px-4 py-2'>
-                                            {item.status === 'diverifikasi' ? (
-                                                <img
-                                                    src='/img/diterima.svg'
-                                                    alt='Diterima'
-                                                    className='opacity-50'
-                                                />
-                                            ) : item.status === 'ditolak' ? (
-                                                <img
-                                                    src='/img/ditolak.svg'
-                                                    alt='Ditolak'
-                                                    className='opacity-50'
-                                                />
-                                            ) : (
-                                                <img
-                                                    src='/img/verifikasi.svg'
-                                                    alt='Verifikasi'
-                                                    onClick={() =>
-                                                        handleVerificationButtonClick(
-                                                            item.id,
-                                                        )
-                                                    }
-                                                    className='cursor-pointer'
-                                                />
-                                            )}
+                                        <td className='border px-4 py-2 '>
+                                            <div className='flex justify-center space-x-2'>
+                                                {item.status ===
+                                                'diverifikasi' ? (
+                                                    <img
+                                                        src='/img/diterima.svg'
+                                                        alt='Diterima'
+                                                        className='opacity-100'
+                                                    />
+                                                ) : item.status ===
+                                                  'ditolak' ? (
+                                                    <img
+                                                        src='/img/ditolak.svg'
+                                                        alt='Ditolak'
+                                                        className='opacity-100'
+                                                    />
+                                                ) : (
+                                                    <img
+                                                        src='/img/verifikasi.svg'
+                                                        alt='Verifikasi'
+                                                        onClick={() =>
+                                                            handleVerificationButtonClick(
+                                                                item.id,
+                                                            )
+                                                        }
+                                                        className='cursor-pointer'
+                                                    />
+                                                )}
+                                            </div>
                                         </td>
                                     </tr>
                                 ))

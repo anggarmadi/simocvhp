@@ -244,27 +244,29 @@ function DataMoU() {
                                                 year: 'numeric',
                                             })}
                                         </td>
-                                        <td className='border px-4 py-2 flex justify-center space-x-2'>
-                                            <img
-                                                src='/img/info.svg'
-                                                alt='Info'
-                                                className='cursor-pointer'
-                                                onClick={() =>
-                                                    handleViewFile(
-                                                        item.file_url,
-                                                    )
-                                                }
-                                            />
-                                            <img
-                                                src='/img/hapus.svg'
-                                                alt='Delete'
-                                                className='cursor-pointer'
-                                                onClick={() =>
-                                                    handleDeleteButtonClick(
-                                                        item.id,
-                                                    )
-                                                }
-                                            />
+                                        <td className='border px-4 py-2 '>
+                                            <div className='flex justify-center space-x-2'>
+                                                <img
+                                                    src='/img/info.svg'
+                                                    alt='Info'
+                                                    className='cursor-pointer'
+                                                    onClick={() =>
+                                                        handleViewFile(
+                                                            item.file_url,
+                                                        )
+                                                    }
+                                                />
+                                                <img
+                                                    src='/img/hapus.svg'
+                                                    alt='Delete'
+                                                    className='cursor-pointer'
+                                                    onClick={() =>
+                                                        handleDeleteButtonClick(
+                                                            item.id,
+                                                        )
+                                                    }
+                                                />
+                                            </div>
                                         </td>
                                     </tr>
                                 ))

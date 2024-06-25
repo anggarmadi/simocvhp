@@ -27,7 +27,6 @@ function ManajemenKaryawan() {
 
     useEffect(() => {
         getDataKaryawan();
-        console.log(dataKaryawan);
     }, []);
 
     const getDataKaryawan = async () => {
@@ -39,7 +38,6 @@ function ManajemenKaryawan() {
                 },
             });
             setDataKaryawan(response.data.data);
-            console.log('datanya ga ada', response.data.data);
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -281,34 +279,38 @@ function ManajemenKaryawan() {
                                             {item.position}
                                         </td>
 
-                                        <td className='border px-4 py-2 flex justify-center space-x-2'>
-                                            <Link
-                                                to={`/lihatkaryawan/${item.id}`}
-                                            >
+                                        <td className='border px-4 py-2 '>
+                                            <div className='flex justify-center space-x-2'>
+                                                <Link
+                                                    to={`/lihatkaryawan/${item.id}`}
+                                                >
+                                                    <img
+                                                        src='/img/info.svg'
+                                                        alt='Info'
+                                                        className='cursor-pointer'
+                                                    />
+                                                </Link>
                                                 <img
-                                                    src='/img/info.svg'
-                                                    alt='Info'
+                                                    src='/img/edit.svg'
+                                                    alt='Edit'
                                                     className='cursor-pointer'
+                                                    onClick={() =>
+                                                        handleEditButtonClick(
+                                                            item,
+                                                        )
+                                                    }
                                                 />
-                                            </Link>
-                                            <img
-                                                src='/img/edit.svg'
-                                                alt='Edit'
-                                                className='cursor-pointer'
-                                                onClick={() =>
-                                                    handleEditButtonClick(item)
-                                                }
-                                            />
-                                            <img
-                                                src='/img/hapus.svg'
-                                                alt='Delete'
-                                                className='cursor-pointer'
-                                                onClick={() =>
-                                                    handleDeleteButtonClick(
-                                                        item.id,
-                                                    )
-                                                }
-                                            />
+                                                <img
+                                                    src='/img/hapus.svg'
+                                                    alt='Delete'
+                                                    className='cursor-pointer'
+                                                    onClick={() =>
+                                                        handleDeleteButtonClick(
+                                                            item.id,
+                                                        )
+                                                    }
+                                                />
+                                            </div>
                                         </td>
                                     </tr>
                                 ))
@@ -468,7 +470,6 @@ function ManajemenKaryawan() {
                                     }
                                 >
                                     <option value=''>-- Pilih Role --</option>
-                                    <option value='admin'>Admin</option>
                                     <option value='operasional'>
                                         Manager Operasional
                                     </option>
