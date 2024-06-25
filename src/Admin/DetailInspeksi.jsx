@@ -25,7 +25,7 @@ function DetailInspeksi() {
     const getDetailInspeksi = async (page = 1) => {
         try {
             const token = secureLocalStorage.getItem('accessToken');
-            const response = await api.get('/api/inspection', {
+            const response = await api.get(`/api/inspection/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
