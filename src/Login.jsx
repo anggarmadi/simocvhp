@@ -6,6 +6,7 @@ import api from './auth/AxiosInstance';
 import Snackbar from './Components/snackbar'; // Import Snackbar component
 
 export default function Login() {
+    const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [snackbar, setSnackbar] = useState({
@@ -41,6 +42,7 @@ export default function Login() {
             return;
         }
         try {
+            setLoading(true);
             const response = await api.post('/api/login', {
                 username,
                 password,
@@ -52,6 +54,7 @@ export default function Login() {
                 secureLocalStorage.setItem('accessToken', result.accessToken);
                 secureLocalStorage.setItem('refreshToken', result.refreshToken);
                 secureLocalStorage.setItem('user', result.data);
+                setLoading(false);
 
                 // Navigate based on role
                 if (result.data.role === 'admin') {
@@ -62,6 +65,7 @@ export default function Login() {
                     navigate('/inspeksi');
                 }
             } else {
+                setLoading(false);
                 setSnackbar({
                     isVisible: true,
                     message: result.data.errors[0] || 'Login failed',
@@ -70,6 +74,7 @@ export default function Login() {
             }
         } catch (error) {
             console.log('Error: ', error);
+            setLoading(false);
             setSnackbar({
                 isVisible: true,
                 message:
@@ -136,7 +141,7 @@ export default function Login() {
                         className='bg-custom-color text-white px-2 py-1 rounded hover:bg-custom-hover-color focus:outline-none focus:ring-2 focus:ring-custom-color focus:ring-offset-2'
                         style={{ backgroundColor: '#561C24', width: '100%' }}
                     >
-                        Login
+                        {loading ? 'Loading' : 'Login'}
                     </button>
                 </form>
             </div>
