@@ -1,0 +1,58 @@
+.relative {
+    background-color: white;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: auto;
+}
+
+.content {
+    margin-left: 100px;
+}
+
+.custom-customer {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-customer th,
+.custom-customer td {
+    padding: 5px 10px;
+}
+
+.custom-customer th {
+    background-color: #fff9eb;
+    border-bottom: 1px solid #ddd;
+    color: #000;
+}
+
+.custom-customer td {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    color: #000;
+}
+
+.custom-customer img {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.button {
+    bottom: 50px;
+    left: 100px;
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    background-color: #f9f9f9; /* Ubah sesuai kebutuhan */
+}
+
+.judul {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: -50px;
+    margin-top: 50px;
+}

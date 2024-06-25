@@ -1,0 +1,59 @@
+.relative {
+    position: relative;
+}
+
+.h-screen {
+    height: 100vh;
+}
+
+.flex {
+    display: flex;
+}
+
+.suratan {
+    padding: 30px;
+    width: 100%;
+}
+
+.kepalanya {
+    margin-bottom: 16px;
+    margin-left: -30px;
+}
+
+.form-surat {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.form-surat label {
+    display: block;
+    color: #000000;
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+.form-atur {
+    width: 95%;
+    padding: 6px;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
+.form-surat tombol {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-success {
+    background-color: #2f602b;
+    color: white;
+}
+
+.tombol-success:hover {
+    background-color: #2f602b;
+}

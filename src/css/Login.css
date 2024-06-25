@@ -1,0 +1,17 @@
+/* Login.css */
+.login-background {
+    background-image: url('img/bg_login.png'); /* Pastikan path menuju image benar */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+img {
+    width: '100%';
+    height: 'auto';
+}

@@ -1,0 +1,13 @@
+.button-karyawan {
+    background-color: #2f602b;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-karyawan:hover {
+    background-color: #2f602b;
+}

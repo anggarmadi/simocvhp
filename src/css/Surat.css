@@ -1,0 +1,59 @@
+.relative {
+    position: relative;
+}
+
+.h-screen {
+    height: 100vh;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.description {
+    margin-top: 1rem;
+    margin-left: 3rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+.description-child {
+    font-size: 1rem;
+    margin-left: 3rem;
+    color: #333;
+}
+
+.content-container {
+    width: 100%;
+    padding-left: 2rem;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 20rem;
+    gap: 60rem;
+}
+
+.btn-back,
+.btn-verify {
+    background-color: #8b0000;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-back:hover,
+.btn-verify:hover {
+    opacity: 0.8;
+}

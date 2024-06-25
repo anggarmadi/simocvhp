@@ -1,0 +1,46 @@
+.relative {
+    position: relative;
+    display: flex;
+}
+
+.Sidebar {
+    flex: 0 0 250px;
+    background-color: #333;
+    color: #fff;
+}
+
+.content {
+    flex: 1;
+}
+
+.table-inspeksi {
+    margin-top: -20px;
+    overflow-x: auto;
+}
+
+.custom-inspeksi {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 35px;
+}
+
+.custom-inspeksi th,
+.custom-inspeksi td {
+    padding: 5px 10px;
+}
+
+.custom-inspeksi th {
+    background-color: #fff9eb;
+}
+
+.custom-inspeksi td {
+    background-color: #fff;
+}
+
+.kepalanya {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: -100px;
+    margin-top: 50px;
+}

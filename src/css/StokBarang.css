@@ -1,0 +1,63 @@
+.relative {
+    background-color: white;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: auto;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.judul {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 0;
+    margin-top: 50px;
+}
+
+.button-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ml-2 {
+    margin-left: 8px;
+}
+
+.table-stokbarang {
+    flex: 1;
+    overflow-x: auto;
+}
+
+.custom-stokbarang {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.custom-stokbarang th,
+.custom-stokbarang td {
+    padding: 10px 50px;
+}
+
+.custom-stokbarang th {
+    background-color: #fff9eb;
+    border-bottom: 1px solid #ddd;
+    color: #000;
+}
+
+.custom-stokbarang td {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    color: #000;
+}
+
+.custom-stokbarang img {
+    display: inline-block;
+    margin-right: 8px;
+}

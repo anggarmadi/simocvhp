@@ -1,0 +1,33 @@
+.card-profile-container {
+    width: 700px;
+    height: auto;
+    padding: 24px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.card-profile-field {
+    margin-bottom: 20px;
+}
+
+.card-profile-label {
+    display: block;
+    color: #4a4a4a;
+    font-size: 0.875rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.card-profile-text {
+    display: block;
+    color: #1a1a1a;
+}
+
+.button-container {
+    margin-top: 70px;
+}

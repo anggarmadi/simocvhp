@@ -1,0 +1,47 @@
+.relative {
+    position: relative;
+    display: flex;
+}
+
+.Sidebar {
+    flex: 0 0 250px;
+    background-color: #333;
+    color: #fff;
+}
+
+.content {
+    flex: 1;
+}
+
+.table-surat {
+    flex: 1;
+    overflow-x: auto;
+}
+
+.custom-surat {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.custom-surat th,
+.custom-surat td {
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.custom-surat th {
+    background-color: #fff9eb;
+}
+
+.custom-surat td {
+    background-color: #fff;
+}
+
+.kepalanya {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: -100px;
+    margin-top: 50px;
+}
