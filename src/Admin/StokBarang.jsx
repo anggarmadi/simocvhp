@@ -231,9 +231,7 @@ function StokBarang() {
                 <div className='judul'>
                     <DynamicTitle text='Stok Barang' />
                 </div>
-                <div className='button-flex flex align-items-center mb-2'>
-                    <span style={{ marginRight: '900px' }}></span>
-
+                <div className='button-flex flex justify-end align-items-center mb-2 space-x-2'>
                     <DynamicButton
                         text='Tambah Barang'
                         onClick={handleAddButtonClick}
