@@ -20,24 +20,30 @@ function ManajemenKaryawan() {
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
     const [deleteItemId, setDeleteItemId] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [dataKaryawan, setDataKaryawan] = useState([]);
     const [selectedKaryawan, setSelectedKaryawan] = useState(null);
     const [errors, setErrors] = useState({});
     const itemsPerPage = 10;
 
     useEffect(() => {
-        getDataKaryawan();
-    }, []);
+        getDataKaryawan(currentPage);
+    }, [currentPage]);
 
-    const getDataKaryawan = async () => {
+    const getDataKaryawan = async (page = 1) => {
         try {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/karyawan', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
+                params: {
+                    page: page,
+                    limit: itemsPerPage,
+                },
             });
             setDataKaryawan(response.data.data);
+            setTotalPages(response.data.pagination.totalPages);
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -206,9 +212,9 @@ function ManajemenKaryawan() {
         setDeleteModalOpen(false);
     };
 
-    const totalPages = Array.isArray(dataKaryawan)
-        ? Math.ceil(dataKaryawan.length / itemsPerPage)
-        : 0;
+    // const totalPages = Array.isArray(dataKaryawan)
+    //     ? Math.ceil(dataKaryawan.length / itemsPerPage)
+    //     : 0;
 
     // const totalPages = Math.ceil(dataKaryawan.length / itemsPerPage);
 

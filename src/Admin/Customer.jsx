@@ -17,6 +17,7 @@ function Customer() {
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
     const [deleteItemId, setDeleteItemId] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [dataCustomer, setDataCustomer] = useState([]);
     const [selectedCustomer, setSelectedCustomer] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -24,19 +25,24 @@ function Customer() {
     const itemsPerPage = 10;
 
     useEffect(() => {
-        getCustomers();
-    }, []);
+        getCustomers(currentPage);
+    }, [currentPage]);
 
-    const getCustomers = async () => {
+    const getCustomers = async (page = 1) => {
         try {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/customer', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
+                params: {
+                    page: page,
+                    limit: itemsPerPage,
+                },
             });
             if (response.status === 200) {
                 setDataCustomer(response.data.data);
+                setTotalPages(response.data.totalPages);
                 setLoading(false);
             }
         } catch (error) {
@@ -164,9 +170,9 @@ function Customer() {
         setDeleteModalOpen(false);
     };
 
-    const totalPages = Array.isArray(dataCustomer)
-        ? Math.ceil(dataCustomer.length / itemsPerPage)
-        : 0;
+    // const totalPages = Array.isArray(dataCustomer)
+    //     ? Math.ceil(dataCustomer.length / itemsPerPage)
+    //     : 0;
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
@@ -181,9 +187,6 @@ function Customer() {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = Array.isArray(dataCustomer)
-        ? dataCustomer.slice(indexOfFirstItem, indexOfLastItem)
-        : [];
 
     if (loading) {
         return <Loading />;
@@ -217,8 +220,8 @@ function Customer() {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.length > 0 ? (
-                                currentItems.map((item, index) => (
+                            {dataCustomer.length > 0 ? (
+                                dataCustomer.map((item, index) => (
                                     <tr key={item.id}>
                                         <td className='border px-4 py-2'>
                                             {indexOfFirstItem + index + 1}

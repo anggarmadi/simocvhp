@@ -13,6 +13,8 @@ import Loading from '../Components/loadingOperasional';
 
 function Inspeksi() {
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [totalPages, setTotalPages] = useState(1);
+
     const [deleteItemId, setDeleteItemId] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [inspeksiData, setInspeksiData] = useState([]);
@@ -26,16 +28,18 @@ function Inspeksi() {
     const itemsPerPage = 10;
 
     useEffect(() => {
-        fetchInspeksiData();
-    }, []);
+        fetchInspeksiData(currentPage);
+    }, [currentPage]);
 
-    const fetchInspeksiData = async () => {
+    const fetchInspeksiData = async (page = 1) => {
         try {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/inspection', {
                 headers: { Authorization: `Bearer ${token}` },
+                params: { page: page, limit: itemsPerPage },
             });
             setInspeksiData(response.data.data);
+            setTotalPages(response.data.totalPages);
             setLoading(false);
         } catch (error) {
             console.error('Error fetching inspection data:', error);
@@ -80,10 +84,6 @@ function Inspeksi() {
         setDeleteModalOpen(false);
     };
 
-    const totalPages = Array.isArray(inspeksiData)
-        ? Math.ceil(inspeksiData.length / itemsPerPage)
-        : 0;
-
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
@@ -98,9 +98,6 @@ function Inspeksi() {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = Array.isArray(inspeksiData)
-        ? inspeksiData.slice(indexOfFirstItem, indexOfLastItem)
-        : [];
 
     const closeSnackbar = () => {
         setSnackbar({ ...snackbar, isVisible: false });
@@ -137,8 +134,8 @@ function Inspeksi() {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.length > 0 ? (
-                                currentItems.map((item, index) => (
+                            {inspeksiData.length > 0 ? (
+                                inspeksiData.map((item, index) => (
                                     <tr key={item.id}>
                                         <td className='border px-4 py-2 text-center'>
                                             {indexOfFirstItem + index + 1}

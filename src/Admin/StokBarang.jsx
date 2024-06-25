@@ -21,24 +21,30 @@ function StokBarang() {
     const [productTypes, setProductTypes] = useState([]);
     const [selectedBarang, setSelectedBarang] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [totalPages, setTotalPages] = useState(1);
     const [errors, setErrors] = useState({});
     const itemsPerPage = 10;
 
     useEffect(() => {
-        getBarang();
+        getBarang(currentPage);
         getProductTypes();
-    }, []);
+    }, [currentPage]);
 
-    const getBarang = async () => {
+    const getBarang = async (page = 1) => {
         try {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/product', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
+                params: {
+                    page: page,
+                    limit: itemsPerPage,
+                },
             });
             if (response.status === 200) {
                 setDataStok(response.data.data);
+                setTotalPages(response.data.totalPages);
                 setLoading(false);
             }
         } catch (error) {
@@ -197,9 +203,9 @@ function StokBarang() {
         setDeleteModalOpen(false);
     };
 
-    const totalPages = Array.isArray(dataStok)
-        ? Math.ceil(dataStok.length / itemsPerPage)
-        : 0;
+    // const totalPages = Array.isArray(dataStok)
+    //     ? Math.ceil(dataStok.length / itemsPerPage)
+    //     : 0;
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -215,9 +221,9 @@ function StokBarang() {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = Array.isArray(dataStok)
-        ? dataStok.slice(indexOfFirstItem, indexOfLastItem)
-        : [];
+    // const currentItems = Array.isArray(dataStok)
+    //     ? dataStok.slice(indexOfFirstItem, indexOfLastItem)
+    //     : [];
     if (loading) {
         return <Loading />;
     }
@@ -257,8 +263,8 @@ function StokBarang() {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.length > 0 ? (
-                                currentItems.map((item, index) => (
+                            {dataStok.length > 0 ? (
+                                dataStok.map((item, index) => (
                                     <tr key={item.id}>
                                         <td className='border px-4 py-2'>
                                             {indexOfFirstItem + index + 1}

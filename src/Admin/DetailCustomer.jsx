@@ -24,14 +24,15 @@ function DetailCustomer() {
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
     const itemsPerPage = 10;
 
     useEffect(() => {
-        getCustomerDetails();
+        getCustomerDetails(currentPage);
         getProduct();
         getCustomer();
-    }, []);
+    }, [currentPage]);
 
     const getCustomer = async () => {
         try {
@@ -72,7 +73,7 @@ function DetailCustomer() {
         }
     };
 
-    const getCustomerDetails = async () => {
+    const getCustomerDetails = async (page = 1) => {
         try {
             setLoading(true);
 
@@ -83,11 +84,16 @@ function DetailCustomer() {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
+                    params: {
+                        page: page,
+                        limit: itemsPerPage,
+                    },
                 },
             );
             console.log(response.data);
             if (response.status === 200) {
                 setCustomerDetail(response.data.data);
+                setTotalPages(response.data.totalPages);
                 setLoading(false);
             }
         } catch (error) {
@@ -179,16 +185,12 @@ function DetailCustomer() {
         setDeleteModalOpen(false);
     };
 
-    const totalPages = Array.isArray(customerDetail)
-        ? Math.ceil(customerDetail.length / itemsPerPage)
-        : 0;
+    // const totalPages = Array.isArray(customerDetail)
+    //     ? Math.ceil(customerDetail.length / itemsPerPage)
+    //     : 0;
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-
-    const currentItems = Array.isArray(customerDetail)
-        ? customerDetail.slice(indexOfFirstItem, indexOfLastItem)
-        : [];
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -235,8 +237,8 @@ function DetailCustomer() {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.length > 0 ? (
-                                currentItems.map((item, index) => (
+                            {customerDetail.length > 0 ? (
+                                customerDetail.map((item, index) => (
                                     <tr>
                                         <td className='border px-4 py-2 '>
                                             {index + 1}

@@ -11,6 +11,7 @@ import api from '../auth/AxiosInstance';
 
 function DetailInspekKaryawan() {
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -18,21 +19,21 @@ function DetailInspekKaryawan() {
     const itemsPerPage = 10;
 
     useEffect(() => {
-        getDetailInspeksi();
-        console.log(id);
-    }, [id]);
+        getDetailInspeksi(currentPage);
+    }, [currentPage]);
 
-    const getDetailInspeksi = async () => {
+    const getDetailInspeksi = async (page = 1) => {
         try {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get(`/api/inspection/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
+                params: { page: page, limit: itemsPerPage },
             });
-            console.log(response.data.data);
-            setData(response.data.data);
             if (response.status === 200) {
+                setData(response.data.data);
+                setTotalPages(response.data.totalPages);
                 setLoading(false);
             }
         } catch (error) {
@@ -46,9 +47,6 @@ function DetailInspekKaryawan() {
     }, [data]);
 
     // const totalPages = Math.ceil(data.length / itemsPerPage);
-    const totalPages = Array.isArray(data)
-        ? Math.ceil(data.length / itemsPerPage)
-        : 0;
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -65,10 +63,6 @@ function DetailInspekKaryawan() {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     // const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
-
-    const currentItems = Array.isArray(data)
-        ? data.slice(indexOfFirstItem, indexOfLastItem)
-        : [];
 
     if (loading) {
         return <Loading />;
@@ -99,8 +93,8 @@ function DetailInspekKaryawan() {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.length > 0 ? (
-                                currentItems.map((item, index) => (
+                            {data.length > 0 ? (
+                                data.map((item, index) => (
                                     <tr key={item.id}>
                                         <td className='border px-4 py-2 text-center'>
                                             {indexOfFirstItem + index + 1}

@@ -9,28 +9,30 @@ import api from '../auth/AxiosInstance';
 
 function ManajemenInspeksi() {
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [dataLaporan, setDataLaporan] = useState([]);
     const itemsPerPage = 10;
 
     useEffect(() => {
-        fetchDataInspeksi();
-    }, []);
+        fetchDataInspeksi(currentPage);
+    }, [currentPage]);
 
-    const fetchDataInspeksi = async () => {
+    const fetchDataInspeksi = async (page = 1) => {
         try {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/myInspection', {
                 headers: { Authorization: `Bearer ${token}` },
+                params: {
+                    page: page,
+                    limit: itemsPerPage,
+                },
             });
             setDataLaporan(response.data.data);
+            setTotalPages(response.data.totalPages);
         } catch (error) {
             console.error('Error fetching inspection data:', error);
         }
     };
-
-    const totalPages = Array.isArray(dataLaporan)
-        ? Math.ceil(dataLaporan.length / itemsPerPage)
-        : 0;
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -46,9 +48,6 @@ function ManajemenInspeksi() {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = Array.isArray(dataLaporan)
-        ? dataLaporan.slice(indexOfFirstItem, indexOfLastItem)
-        : [];
 
     return (
         <div className='relative h-screen flex'>
@@ -72,8 +71,8 @@ function ManajemenInspeksi() {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.length > 0 ? (
-                                currentItems.map((item, index) => (
+                            {dataLaporan.length > 0 ? (
+                                dataLaporan.map((item, index) => (
                                     <tr key={item.id}>
                                         <td className='border px-4 py-2 text-center'>
                                             {indexOfFirstItem + index + 1}

@@ -11,21 +11,27 @@ import secureLocalStorage from 'react-secure-storage';
 
 function LaporInspeksiKaryawan() {
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [dataCustomer, setDataCustomer] = useState([]);
     const [loading, setLoading] = useState(true);
     const itemsPerPage = 10;
+    useEffect(() => {
+        getCompany(currentPage);
+    }, [currentPage]);
 
-    const getCompany = async () => {
+    const getCompany = async (page = 1) => {
         try {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/customer', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
+                params: { page: page, limit: itemsPerPage },
             });
             console.log(response.data.data);
             if (response.status === 200) {
                 setDataCustomer(response.data.data);
+                setTotalPages(response.data.totalPages);
                 setLoading(false);
             }
         } catch (error) {
@@ -33,14 +39,7 @@ function LaporInspeksiKaryawan() {
         }
     };
 
-    useEffect(() => {
-        getCompany();
-    }, []);
-
     // const totalPages = Math.ceil(dataCustomer.length / itemsPerPage);
-    const totalPages = Array.isArray(dataCustomer)
-        ? Math.ceil(dataCustomer.length / itemsPerPage)
-        : 0;
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -57,9 +56,6 @@ function LaporInspeksiKaryawan() {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     // const currentItems = dataCustomer.slice(indexOfFirstItem, indexOfLastItem);
-    const currentItems = Array.isArray(dataCustomer)
-        ? dataCustomer.slice(indexOfFirstItem, indexOfLastItem)
-        : [];
 
     if (loading) {
         return <Loading />;
@@ -87,8 +83,8 @@ function LaporInspeksiKaryawan() {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.length > 0 ? (
-                                currentItems.map((item, index) => (
+                            {dataCustomer.length > 0 ? (
+                                dataCustomer.map((item, index) => (
                                     <tr key={item.id}>
                                         <td className='border px-4 py-2 text-center'>
                                             {indexOfFirstItem + index + 1}

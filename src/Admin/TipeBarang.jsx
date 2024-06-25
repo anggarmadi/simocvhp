@@ -17,6 +17,7 @@ function TipeBarang() {
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
     const [deleteItemId, setDeleteItemId] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(true);
     const [newTipeBarang, setNewTipeBarang] = useState('');
     const [dataJenisBarang, setDataJenisBarang] = useState([]);
@@ -25,19 +26,24 @@ function TipeBarang() {
     const itemsPerPage = 10;
 
     useEffect(() => {
-        getTipeBarang();
-    }, []);
+        getTipeBarang(currentPage);
+    }, [currentPage]);
 
-    const getTipeBarang = async () => {
+    const getTipeBarang = async (page = 1) => {
         try {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/productType', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
+                params: {
+                    page: page,
+                    limit: itemsPerPage,
+                },
             });
             if (response.status === 200) {
                 setDataJenisBarang(response.data.data);
+                setTotalPages(response.data.totalPages);
                 setLoading(false);
             }
         } catch (error) {
@@ -113,10 +119,6 @@ function TipeBarang() {
         setDeleteModalOpen(false);
     };
 
-    const totalPages = Array.isArray(dataJenisBarang)
-        ? Math.ceil(dataJenisBarang.length / itemsPerPage)
-        : 0;
-
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
@@ -131,9 +133,6 @@ function TipeBarang() {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = Array.isArray(dataJenisBarang)
-        ? dataJenisBarang.slice(indexOfFirstItem, indexOfLastItem)
-        : [];
 
     if (loading) {
         return <Loading />;
@@ -164,8 +163,8 @@ function TipeBarang() {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.length > 0 ? (
-                                currentItems.map((item, index) => (
+                            {dataJenisBarang.length > 0 ? (
+                                dataJenisBarang.map((item, index) => (
                                     <tr key={item.id}>
                                         <td className='border px-4 py-2 text-center'>
                                             {indexOfFirstItem + index + 1}

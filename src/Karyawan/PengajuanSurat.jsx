@@ -13,6 +13,7 @@ import Loading from '../Components/loadingKaryawan';
 
 function PengajuanSurat() {
     const [isFormVisible, setFormVisible] = useState(false);
+    const [totalPages, setTotalPages] = useState(1);
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
     const [deleteItemId, setDeleteItemId] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -26,16 +27,18 @@ function PengajuanSurat() {
     const itemsPerPage = 10;
 
     useEffect(() => {
-        fetchDataSurat();
-    }, []);
+        fetchDataSurat(currentPage);
+    }, [currentPage]);
 
-    const fetchDataSurat = async () => {
+    const fetchDataSurat = async (page = 1) => {
         try {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/myLetter', {
                 headers: { Authorization: `Bearer ${token}` },
+                params: { page: page, limit: itemsPerPage },
             });
             setDataSurat(response.data.data);
+            setTotalPages(response.data.totalPages);
             setLoading(false);
         } catch (error) {
             console.error('Error fetching data surat', error);
@@ -98,10 +101,6 @@ function PengajuanSurat() {
         setSnackbar({ ...snackbar, isVisible: false });
     };
 
-    const totalPages = Array.isArray(dataSurat)
-        ? Math.ceil(dataSurat.length / itemsPerPage)
-        : 0;
-
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
@@ -117,10 +116,6 @@ function PengajuanSurat() {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     // const currentItems = dataSurat.slice(indexOfFirstItem, indexOfLastItem);
-
-    const currentItems = Array.isArray(dataSurat)
-        ? dataSurat.slice(indexOfFirstItem, indexOfLastItem)
-        : [];
 
     if (loading) {
         return <Loading />;
@@ -169,8 +164,8 @@ function PengajuanSurat() {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.length > 0 ? (
-                                currentItems.map((item, index) => (
+                            {dataSurat.length > 0 ? (
+                                dataSurat.map((item, index) => (
                                     <tr key={item.id}>
                                         <td className='border px-4 py-2 text-center'>
                                             {indexOfFirstItem + index + 1}

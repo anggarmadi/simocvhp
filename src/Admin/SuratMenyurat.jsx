@@ -19,23 +19,29 @@ function SuratMenyurat() {
     const [currentPage, setCurrentPage] = useState(1);
     const [dataSurat, setDataSurat] = useState([]);
     const [selectedSurat, setSelectedSurat] = useState(null);
+    const [totalPages, setTotalPages] = useState(1);
     const [verificationStatus, setVerificationStatus] = useState({});
     const itemsPerPage = 10;
 
     useEffect(() => {
-        getSurat();
-    }, []);
+        getSurat(currentPage);
+    }, [currentPage]);
 
-    const getSurat = async () => {
+    const getSurat = async (page = 1) => {
         try {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/letter', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
+                params: {
+                    page: page,
+                    limit: itemsPerPage,
+                },
             });
             if (response.status === 200) {
                 setDataSurat(response.data.data);
+                setTotalPages(response.data.totalPages);
                 setLoading(false);
             }
         } catch (error) {
@@ -116,9 +122,6 @@ function SuratMenyurat() {
         window.open(fileUrl, '_blank');
     };
 
-    const totalPages = Array.isArray(dataSurat)
-        ? Math.ceil(dataSurat.length / itemsPerPage)
-        : 0;
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
@@ -133,9 +136,6 @@ function SuratMenyurat() {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = Array.isArray(dataSurat)
-        ? dataSurat.slice(indexOfFirstItem, indexOfLastItem)
-        : [];
 
     if (loading) {
         return <Loading />;
@@ -169,8 +169,8 @@ function SuratMenyurat() {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.length > 0 ? (
-                                currentItems.map((item, index) => (
+                            {dataSurat.length > 0 ? (
+                                dataSurat.map((item, index) => (
                                     <tr key={item.id}>
                                         <td className='border px-4 py-2 text-center'>
                                             {indexOfFirstItem + index + 1}

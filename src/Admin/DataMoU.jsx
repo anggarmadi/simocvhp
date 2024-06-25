@@ -21,25 +21,31 @@ function DataMoU() {
     const [dataCustomer, setDataCustomer] = useState([]);
     const [dataNewMoU, setDataNewMoU] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [selectedFile, setSelectedFile] = useState(null);
     const [errors, setErrors] = useState({});
 
     const itemsPerPage = 10;
 
     useEffect(() => {
-        getDataMoU();
+        getDataMoU(currentPage);
         getDataCustomer();
-    }, []);
+    }, [currentPage]);
 
-    const getDataMoU = async () => {
+    const getDataMoU = async (page = 1) => {
         const token = secureLocalStorage.getItem('accessToken');
         const response = await api.get('/api/mou', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
+            params: {
+                page: page,
+                limit: itemsPerPage,
+            },
         });
 
         setDataMoU(response.data.data);
+        setTotalPages(response.data.pagination.totalPages);
         setLoading(false);
         console.log(response.data.data);
     };
@@ -152,9 +158,9 @@ function DataMoU() {
         setDeleteModalOpen(false);
     };
 
-    const totalPages = Array.isArray(dataMoU)
-        ? Math.ceil(dataMoU.length / itemsPerPage)
-        : 0;
+    // const totalPages = Array.isArray(dataMoU)
+    //     ? Math.ceil(dataMoU.length / itemsPerPage)
+    //     : 0;
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -182,9 +188,7 @@ function DataMoU() {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = Array.isArray(dataMoU)
-        ? dataMoU.slice(indexOfFirstItem, indexOfLastItem)
-        : [];
+
     if (loading) {
         return <Loading />;
     }
@@ -216,8 +220,8 @@ function DataMoU() {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.length > 0 ? (
-                                currentItems.map((item, index) => (
+                            {dataMoU.length > 0 ? (
+                                dataMoU.map((item, index) => (
                                     <tr key={item.id}>
                                         <td className='border px-4 py-2 text-center'>
                                             {indexOfFirstItem + index + 1}
