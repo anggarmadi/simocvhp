@@ -42,6 +42,7 @@ function PengajuanSurat() {
             setLoading(false);
         } catch (error) {
             console.error('Error fetching data surat', error);
+            setLoading(false);
         }
     };
 
