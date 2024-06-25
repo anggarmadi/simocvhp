@@ -41,41 +41,43 @@ function Dashboard() {
                 <Sidebar />
             </div>
 
-            <div className='ml-8 flex h-2' style={{ marginTop: '50px' }}>
-                <Link to='/manajemenkaryawan'>
-                    <CardWithLink
-                        title='Jumlah Karyawan'
-                        description={dash.data.sumKaryawan}
-                        logo='/img/orang.svg'
-                    />
-                </Link>
-            </div>
-            <div className='ml-4 h-2' style={{ marginTop: '50px' }}>
-                <Link to='/customer'>
-                    <CardWithLink
-                        title='Jumlah Customer'
-                        description={dash.data.sumPelanggan}
-                        logo='/img/orang.svg'
-                    />
-                </Link>
-            </div>
-
-            <div className='ml-6 flex h-2' style={{ marginTop: '50px' }}>
-                <Link to='/datamou'>
-                    <CardWithLink
-                        title='Jumlah MoU'
-                        description={dash.data.sumMou}
-                        logo='/img/surat.svg'
-                    />
-                </Link>
-                <div className='ml-4 h-2'>
-                    <Link to='/suratmenyurat'>
+            <div className='flex'>
+                <div className='ml-8 flex h-2' style={{ marginTop: '50px' }}>
+                    <Link to='/manajemenkaryawan'>
                         <CardWithLink
-                            title='Surat Masuk'
-                            description={dash.data.sumSurat}
+                            title='Jumlah Karyawan'
+                            description={dash.data.sumKaryawan}
+                            logo='/img/orang.svg'
+                        />
+                    </Link>
+                </div>
+                <div className='ml-4 h-2' style={{ marginTop: '50px' }}>
+                    <Link to='/customer'>
+                        <CardWithLink
+                            title='Jumlah Customer'
+                            description={dash.data.sumPelanggan}
+                            logo='/img/orang.svg'
+                        />
+                    </Link>
+                </div>
+
+                <div className='ml-6 flex h-2' style={{ marginTop: '50px' }}>
+                    <Link to='/datamou'>
+                        <CardWithLink
+                            title='Jumlah MoU'
+                            description={dash.data.sumMou}
                             logo='/img/surat.svg'
                         />
                     </Link>
+                    <div className='ml-4 h-2'>
+                        <Link to='/suratmenyurat'>
+                            <CardWithLink
+                                title='Surat Masuk'
+                                description={dash.data.sumSurat}
+                                logo='/img/surat.svg'
+                            />
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
