@@ -35,6 +35,7 @@ function EditPengajuanSurat() {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/letterType', {
                 headers: { Authorization: `Bearer ${token}` },
+                params: { limit: 100 },
             });
             setLetterTypes(response.data.data);
         } catch (error) {

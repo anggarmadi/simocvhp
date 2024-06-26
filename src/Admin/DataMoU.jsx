@@ -56,6 +56,9 @@ function DataMoU() {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
+            params: {
+                limit: 100,
+            },
         });
 
         if (response.status === 200) {

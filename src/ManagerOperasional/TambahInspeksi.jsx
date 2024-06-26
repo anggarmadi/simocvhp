@@ -33,6 +33,7 @@ function TambahInspeksi() {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/customer', {
                 headers: { Authorization: `Bearer ${token}` },
+                params: { limit: 100 },
             });
             setCompanies(response.data.data);
         } catch (error) {
@@ -45,6 +46,7 @@ function TambahInspeksi() {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/employee', {
                 headers: { Authorization: `Bearer ${token}` },
+                params: { limit: 100 },
             });
             setKaryawan(response.data.data);
         } catch (error) {

@@ -85,6 +85,7 @@ function FormInspeksi() {
             const token = secureLocalStorage.getItem('accessToken');
             const response = await api.get('/api/product', {
                 headers: { Authorization: `Bearer ${token}` },
+                params: { limit: 100 },
             });
             const productData = response.data.data;
             setProducts(productData);
