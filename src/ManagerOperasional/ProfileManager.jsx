@@ -271,7 +271,7 @@ function KaryawanProfile() {
                                         )}
                                     </div>
                                     <div className='isinya'>
-                                        <label>Email</label>
+                                        <label>Alamat</label>
                                         <input
                                             type='text'
                                             name='address'
