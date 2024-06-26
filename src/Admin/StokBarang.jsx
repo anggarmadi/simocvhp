@@ -44,6 +44,7 @@ function StokBarang() {
             });
             if (response.status === 200) {
                 setDataStok(response.data.data);
+                console.log(response.data.data);
                 setTotalPages(response.data.totalPages);
                 setLoading(false);
             }
@@ -280,7 +281,7 @@ function StokBarang() {
                                         </td>
                                         <td className='border px-4 py-2'>
                                             {new Date(
-                                                item.updatedAt,
+                                                item.tangga_masuk,
                                             ).toLocaleDateString('id-ID', {
                                                 day: '2-digit',
                                                 month: '2-digit',

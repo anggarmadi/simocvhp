@@ -31,6 +31,7 @@ import ProtectedRoute from './auth/ProtectedRoute';
 import LaporInspeksiKaryawan from './ManagerOperasional/LaporanInspeksiKaryawan';
 import DetailInspekKaryawan from './ManagerOperasional/DetailInspeksiKaryawan';
 import Forbidden from './Components/forbidden';
+import LandingPage from './LandingPage';
 
 const App = () => {
     return (
@@ -38,7 +39,8 @@ const App = () => {
             <Routes>
                 <Route path='/login' element={<Login />} />
                 <Route path='/unauthorized' element={<Forbidden />} />
-                <Route path='/' element={<Login />} />
+                {/* <Route path='/' element={<Login />} /> */}
+                <Route path='/' element={<LandingPage />} />
                 <Route
                     path='/dashboard'
                     element={
