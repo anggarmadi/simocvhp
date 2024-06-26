@@ -151,7 +151,7 @@ function Sidebar() {
                     onConfirm={() => {
                         // Handle logout logic here
                         secureLocalStorage.clear();
-                        navigate('/');
+                        navigate('/login');
                         setShowLogoutModal(false);
                     }}
                 />
