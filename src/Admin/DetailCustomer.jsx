@@ -62,6 +62,9 @@ function DetailCustomer() {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
+                params: {
+                    limit: 100,
+                },
             });
             if (response.status === 200) {
                 setProduct(response.data.data);
