@@ -58,7 +58,7 @@ function SuratMenyurat() {
             });
             if (response.status === 200) {
                 console.log(response);
-                getSurat();
+                getSurat(currentPage);
                 setLoading(false);
             }
         } catch (error) {
@@ -75,7 +75,7 @@ function SuratMenyurat() {
             });
             if (response.status === 200) {
                 console.log(response);
-                getSurat();
+                getSurat(currentPage);
                 setLoading(false);
             }
         } catch (error) {

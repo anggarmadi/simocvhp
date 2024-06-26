@@ -61,7 +61,7 @@ function TipeBarang() {
                 { headers: { Authorization: `Bearer ${token}` } },
             );
             if (response.status === 201) {
-                getTipeBarang();
+                getTipeBarang(currentPage);
                 setNewTipeBarang('');
                 setFormVisible(false);
             }
@@ -92,7 +92,7 @@ function TipeBarang() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            getTipeBarang();
+            getTipeBarang(currentPage);
         } catch (error) {
             console.log(error);
         }

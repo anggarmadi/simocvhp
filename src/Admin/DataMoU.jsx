@@ -75,7 +75,7 @@ function DataMoU() {
         });
 
         if (response.status === 200) {
-            getDataMoU();
+            getCustomers(currentPage);
             setLoading(false);
         }
 
@@ -101,7 +101,7 @@ function DataMoU() {
             });
             console.log(response.status);
 
-            getDataMoU();
+            getCustomers(currentPage);
             setLoading(false);
         } catch (error) {
             console.log(error);

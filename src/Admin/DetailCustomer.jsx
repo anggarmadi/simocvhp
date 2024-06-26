@@ -115,7 +115,7 @@ function DetailCustomer() {
                     },
                 },
             );
-            getCustomerDetails();
+            getCustomerDetails(currentPage);
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -139,7 +139,7 @@ function DetailCustomer() {
                     },
                 },
             );
-            getCustomerDetails();
+            getCustomerDetails(currentPage);
             setLoading(false);
         } catch (error) {
             console.log(error);

@@ -60,7 +60,7 @@ function ManajemenKaryawan() {
             });
             if (response.status === 200) {
                 console.log('User deleted successfully');
-                getDataKaryawan();
+                getDataKaryawan(currentPage);
             } else {
                 console.log('Failed to delete user');
             }
@@ -92,7 +92,7 @@ function ManajemenKaryawan() {
                     },
                 },
             );
-            getDataKaryawan();
+            getDataKaryawan(currentPage);
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -123,7 +123,7 @@ function ManajemenKaryawan() {
                     },
                 },
             );
-            getDataKaryawan();
+            getDataKaryawan(currentPage);
             setLoading(false);
         } catch (error) {
             console.log(error);

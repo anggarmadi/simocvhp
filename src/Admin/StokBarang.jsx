@@ -77,7 +77,7 @@ function StokBarang() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            getBarang();
+            getBarang(currentPage);
         } catch (error) {
             console.log(error);
         }
@@ -102,7 +102,7 @@ function StokBarang() {
                     },
                 },
             );
-            getBarang();
+            getBarang(currentPage);
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -127,7 +127,7 @@ function StokBarang() {
                     },
                 },
             );
-            getBarang();
+            getBarang(currentPage);
             setLoading(false);
         } catch (error) {
             console.log(error);

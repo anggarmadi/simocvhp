@@ -58,7 +58,7 @@ function Customer() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            getCustomers();
+            getCustomers(currentPage);
         } catch (error) {
             console.log(error);
         }
@@ -82,7 +82,7 @@ function Customer() {
                     },
                 },
             );
-            getCustomers();
+            getCustomers(currentPage);
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -107,7 +107,7 @@ function Customer() {
                     },
                 },
             );
-            getCustomers();
+            getCustomers(currentPage);
             setLoading(false);
         } catch (error) {
             console.log(error);
