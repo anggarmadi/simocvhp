@@ -281,7 +281,7 @@ function StokBarang() {
                                         </td>
                                         <td className='border px-4 py-2'>
                                             {new Date(
-                                                item.tangga_masuk,
+                                                item.updatedAt,
                                             ).toLocaleDateString('id-ID', {
                                                 day: '2-digit',
                                                 month: '2-digit',
