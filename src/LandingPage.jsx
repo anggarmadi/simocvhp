@@ -109,8 +109,8 @@ const LandingPage = () => {
                         <div
                             className='h-full w-full bg-cover bg-center '
                             style={{
-                                backgroundImage: `url('https://c0.wallpaperflare.com/preview/662/69/148/building-office-building-city-town.jpg')`,
-                                height: '600px',
+                                backgroundImage: `url('/public/img/ClientSatu.jpg')`,
+                                height: '1000px',
                             }}
                         ></div>
                     </div>
@@ -118,8 +118,8 @@ const LandingPage = () => {
                         <div
                             className='h-full w-full bg-cover bg-center'
                             style={{
-                                backgroundImage: `url('https://c0.wallpaperflare.com/preview/329/929/149/cars-on-road-surrounded-by-building-during-nighttime.jpg')`,
-                                height: '600px',
+                                backgroundImage: `url('/public/img/ClientDua.jpg')`,
+                                height: '1000px',
                             }}
                         ></div>
                     </div>
@@ -127,8 +127,8 @@ const LandingPage = () => {
                         <div
                             className='h-full w-full bg-cover bg-center'
                             style={{
-                                backgroundImage: `url('https://c0.wallpaperflare.com/preview/153/428/1002/buildings-near-body-of-water-during-nighttime.jpg')`,
-                                height: '600px',
+                                backgroundImage: `url('/public/img/cvharapanputri.png')`,
+                                height: '1000px',
                             }}
                         ></div>
                     </div>
