@@ -106,31 +106,34 @@ const LandingPage = () => {
             <section id='about' className='' data-aos='fade-up'>
                 <Slider {...mainSliderSettings}>
                     <div className='  '>
-                        <div
-                            className='h-full w-full bg-cover bg-center '
+                        <img
+                            src='../public/img/ClientSatu.jpg'
+                            alt='Room Fragrance'
+                            className='mx-auto mb-4'
                             style={{
-                                backgroundImage: `url('/public/img/ClientSatu.jpg')`,
                                 height: '1000px',
                             }}
-                        ></div>
+                        />
                     </div>
                     <div>
-                        <div
-                            className='h-full w-full bg-cover bg-center'
+                        <img
+                            src='../public/img/ClientDua.jpg'
+                            alt='Room Fragrance'
+                            className='mx-auto mb-4'
                             style={{
-                                backgroundImage: `url('/public/img/ClientDua.jpg')`,
                                 height: '1000px',
                             }}
-                        ></div>
+                        />
                     </div>
                     <div>
-                        <div
-                            className='h-full w-full bg-cover bg-center'
+                        <img
+                            src='../public/img/cvharapanputri.png'
+                            alt='Room Fragrance'
+                            className='mx-auto mb-4'
                             style={{
-                                backgroundImage: `url('/public/img/cvharapanputri.png')`,
                                 height: '1000px',
                             }}
-                        ></div>
+                        />
                     </div>
                 </Slider>
                 <div className='mx-auto text-center bg-opacity-50 bg-black text-white p-10'>
