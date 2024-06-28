@@ -51,8 +51,8 @@ const LandingPage = () => {
     };
 
     return (
-        <div>
-            <header className='bg-yellow-900 text-white p-1'>
+        <div className='  overflow-hidden'>
+            <header className='bg-yellow-900 text-white p-1 '>
                 <div className='mx-auto flex justify-between items-center'>
                     <img
                         className='ml-4'
@@ -111,7 +111,9 @@ const LandingPage = () => {
                             alt='Room Fragrance'
                             className='mx-auto mb-4'
                             style={{
-                                height: '1000px',
+                                maxWidth: '100%', // Pastikan gambar tidak melebihi lebar layar
+                                height: 'auto', // Tinggi gambar akan menyesuaikan proporsi lebar
+                                objectFit: 'cover', // Pastikan gambar tetap proporsional
                             }}
                         />
                     </div>
@@ -121,7 +123,9 @@ const LandingPage = () => {
                             alt='Room Fragrance'
                             className='mx-auto mb-4'
                             style={{
-                                height: '1000px',
+                                maxWidth: '100%', // Pastikan gambar tidak melebihi lebar layar
+                                height: 'auto', // Tinggi gambar akan menyesuaikan proporsi lebar
+                                objectFit: 'cover', // Pastikan gambar tetap proporsional
                             }}
                         />
                     </div>
@@ -131,7 +135,9 @@ const LandingPage = () => {
                             alt='Room Fragrance'
                             className='mx-auto mb-4'
                             style={{
-                                height: '1000px',
+                                maxWidth: '100%', // Pastikan gambar tidak melebihi lebar layar
+                                height: 'auto', // Tinggi gambar akan menyesuaikan proporsi lebar
+                                objectFit: 'cover', // Pastikan gambar tetap proporsional
                             }}
                         />
                     </div>
