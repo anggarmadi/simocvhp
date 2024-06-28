@@ -107,7 +107,7 @@ const LandingPage = () => {
                 <Slider {...mainSliderSettings}>
                     <div className='  '>
                         <img
-                            src='../public/img/ClientSatu.jpg'
+                            src='/img/Clientsatu.jpg'
                             alt='Room Fragrance'
                             className='mx-auto mb-4'
                             style={{
@@ -117,7 +117,7 @@ const LandingPage = () => {
                     </div>
                     <div>
                         <img
-                            src='../public/img/ClientDua.jpg'
+                            src='/img/ClientDua.jpg'
                             alt='Room Fragrance'
                             className='mx-auto mb-4'
                             style={{
@@ -127,7 +127,7 @@ const LandingPage = () => {
                     </div>
                     <div>
                         <img
-                            src='../public/img/cvharapanputri.png'
+                            src='/img/cvharapanputri.png'
                             alt='Room Fragrance'
                             className='mx-auto mb-4'
                             style={{
